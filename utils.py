@@ -22,11 +22,6 @@ import requests
 import aiohttp
 from shortzy import Shortzy
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-    r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))"
-)
-
 imdb = Cinemagoer()
 TOKENS = {}
 VERIFIED = {}
