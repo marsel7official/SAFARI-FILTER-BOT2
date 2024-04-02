@@ -12,7 +12,15 @@ class Database:
         self.col = self.db.users
         self.grp = self.db.groups
         self.users = self.db.uersz
-
+        self.req = self.db.requests
+        
+    async def find_join_req(self, id):
+        return bool(await self.req.find_one({'id': id}))
+        
+    async def add_join_req(self, id):
+        await self.req.insert_one({'id': id})
+    async def del_join_req(self):
+        await self.req.drop()
 
     def new_user(self, id, name):
         return dict(
@@ -24,6 +32,7 @@ class Database:
             ),
         )
 
+
     def new_group(self, id, title):
         return dict(
             id = id,
@@ -33,23 +42,6 @@ class Database:
                 reason="",
             ),
         )
-    
-    async def update_verification(self, id, date, time):
-        status = {
-            'date': str(date),
-            'time': str(time)
-        }
-        await self.col.update_one({'id': int(id)}, {'$set': {'verification_status': status}})
-
-    async def get_verified(self, id):
-        default = {
-            'date': "1999-12-31",
-            'time': "23:59:59"
-        }
-        user = await self.col.find_one({'id': int(id)})
-        if user:
-            return user.get("verification_status", default)
-        return default
     
     async def add_user(self, id, name):
         user = self.new_user(id, name)
@@ -147,8 +139,8 @@ class Database:
         if chat:
             return chat.get('settings', default)
         return default
- 
-               
+    
+
     async def disable_chat(self, chat, reason="No Reason"):
         chat_status=dict(
             is_disabled=True,
@@ -168,7 +160,8 @@ class Database:
 
     async def get_db_size(self):
         return (await self.db.command("dbstats"))['dataSize']
-        async def get_user(self, user_id):
+
+    async def get_user(self, user_id):
         user_data = await self.users.find_one({"id": user_id})
         return user_data
     async def update_user(self, user_data):
