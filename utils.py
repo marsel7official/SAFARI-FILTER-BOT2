@@ -22,6 +22,11 @@ import requests
 import aiohttp
 from shortzy import Shortzy
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+    r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))"
+)
+
 imdb = Cinemagoer()
 TOKENS = {}
 VERIFIED = {}
@@ -29,6 +34,7 @@ BANNED = {}
 SMART_OPEN = '“'
 SMART_CLOSE = '”'
 START_CHAR = ('\'', '"', SMART_OPEN)
+ class temp(object):
     MELCOW = {}
     U_NAME = None
     B_NAME = None
@@ -42,6 +48,8 @@ START_CHAR = ('\'', '"', SMART_OPEN)
     GETALL = {}
     SPELL_CHECK = {}
 
+
+async def is_subscribed(bot, query=None, userid=None):
 
 async def is_subscribed(bot, query=None, userid=None):
     try:
