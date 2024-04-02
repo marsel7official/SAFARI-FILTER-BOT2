@@ -29,7 +29,6 @@ BANNED = {}
 SMART_OPEN = '“'
 SMART_CLOSE = '”'
 START_CHAR = ('\'', '"', SMART_OPEN)
-	@@ -47,23 +49,16 @@ class temp(object):
     MELCOW = {}
     U_NAME = None
     B_NAME = None
@@ -53,7 +52,7 @@ async def is_subscribed(bot, query=None, userid=None):
     except UserNotParticipant:
         pass
     except Exception as e:
-	@@ -163,18 +158,32 @@ async def broadcast_messages(user_id, message):
+async def broadcast_messages(user_id, message):
         return await broadcast_messages(user_id, message)
     except InputUserDeactivated:
         await db.delete_user(int(user_id))
@@ -72,7 +71,7 @@ async def is_subscribed(bot, query=None, userid=None):
 async def search_gagala(text):
     usr_agent = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-	@@ -212,13 +221,9 @@ def get_size(size):
+	def get_size(size):
         size /= 1024.0
     return "%.2f %s" % (size, units[i])
 
@@ -86,7 +85,7 @@ def list_to_str(k):
 
 def get_file_id(msg: Message):
     if msg.media:
-	@@ -456,41 +461,6 @@ def humanbytes(size):
+	 def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
@@ -155,7 +154,7 @@ async def get_users():
 
 async def check_token(bot, userid, token):
     user = await bot.get_users(userid)
-	@@ -574,29 +594,27 @@ async def check_token(bot, userid, token):
+	 async def check_token(bot, userid, token):
     else:
         return False
 
