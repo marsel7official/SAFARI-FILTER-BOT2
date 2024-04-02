@@ -52,6 +52,9 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 # fill premium users id
 PREMIUM_USER = [int(user) if id_pattern.search(user) else user for user in environ.get('PREMIUM_USER', '7015329594').split()]
 
+# add premium logs channel id
+PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', ''))
+
 #stream link shortner
 STREAM_SITE = (environ.get('STREAM_SITE', 'urlshortx.com'))
 STREAM_API = (environ.get('STREAM_API', '8afa8fbc218cc0791c62495f2c510c92524503ce'))
